@@ -23,8 +23,8 @@ const projects = [
     "Patient Records Management"
   ],
   tone: "navy",
-  image: "",
-  screenshots: [],
+  image: "/projects/clinexus1.jpg",
+  screenshots: ["/projects/clinexus1.jpg"],
   no: "02"
 },
   { title: "Memory Card Game", category: "Windows Forms application · Desktop", year: "2024", description: "Developed a desktop memory card game using C# and Windows Forms, implementing card-matching mechanics and object-oriented programming concepts.", tech: ["C#", "Windows Forms", "Object-Oriented Programming"], features: ["Card-matching mechanics", "Desktop application development", "Points and Levels"], tone: "blue", image: "", screenshots: [], no: "03" },
