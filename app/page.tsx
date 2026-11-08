@@ -24,7 +24,7 @@ const projects = [
   ],
   tone: "navy",
   image: "",
-  screenshots: [],
+  screenshots: ["/projects/clinexus1.jpg"],
   no: "02"
 },
   { title: "Memory Card Game", category: "Windows Forms application · Desktop", year: "2024", description: "Developed a desktop memory card game using C# and Windows Forms, implementing card-matching mechanics and object-oriented programming concepts.", tech: ["C#", "Windows Forms", "Object-Oriented Programming"], features: ["Card-matching mechanics", "Desktop application development", "Points and Levels"], tone: "blue", image: "", detailImage: "/projects/memory-card-game.jpg", screenshots: [], no: "03" },
@@ -101,7 +101,14 @@ export default function Home() {
     return () => { removeEventListener("scroll", reveal); revealObserver.disconnect(); };
   }, []);
 
-  const submit = (e: FormEvent<HTMLFormElement>) => { e.preventDefault(); setSent(true); };
+  const submit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const subject = `Portfolio message from ${formData.get("name")}`;
+    const body = `Name: ${formData.get("name")}\nEmail: ${formData.get("email")}\n\n${formData.get("message")}`;
+    window.location.href = `mailto:queenntoledo@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setSent(true);
+  };
 
   return <main>
     <div className="progress-track"><span className="progress-line" /><span className="progress-rocket">🚀</span></div>
@@ -126,7 +133,7 @@ export default function Home() {
     </section>
     <section className="resume-section shell" id="resume"><div className="resume-panel reveal"><div className="resume-mark" aria-hidden="true"><span>AG</span><i /></div><div className="resume-copy"><p className="eyebrow">06 / Resume</p><h2>A closer look at<br /><em>my experience.</em></h2><p>Explore my education, projects, skills, and certifications in one place.</p></div><div className="resume-actions"><button className="button primary" type="button" onClick={() => setResumeOpen(true)}>View resume <Arrow /></button><a className="button ghost" href="/resume.pdf" download="Ashley-Toledo-Resume.pdf">Download resume ↓</a></div></div></section>
 
-    <section className="contact shell" id="contact"><div className="contact-copy reveal"><p className="eyebrow">07 / Connect</p><h2>Have something<br /><em>to say?</em></h2><p>Whether you&apos;re building something new, imagining what&apos;s next, or just want to say hello — my inbox is always open.</p><div className="contact-details"><a href="mailto:queenntoledo@gmail.com">queenntoledo@gmail.com</a><a href="tel:+639283023454">0928 302 3454</a><span>San Ildefonso, Bulacan, Philippines</span></div><div className="social-links"><a href="https://github.com/ashytoledo" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/queen-toledo-5b8732434/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="https://www.facebook.com/ashy.toledo.2025" target="_blank" rel="noreferrer">Facebook ↗</a></div></div><form className="contact-form reveal" onSubmit={submit}><label className="contact-field" onPointerMove={trackPointer}>Your name<input name="name" required placeholder="How should I call you?" /></label><label className="contact-field" onPointerMove={trackPointer}>Your email<input name="email" type="email" required placeholder="you@email.com" /></label><label className="contact-field" onPointerMove={trackPointer}>Your message<textarea name="message" required placeholder="Tell me what you&apos;re imagining..." rows={4} /></label><button className="button primary" type="submit">{sent ? "Message sent ✓" : "Send message"} <Arrow /></button></form></section>
+    <section className="contact shell" id="contact"><div className="contact-copy reveal"><p className="eyebrow">07 / Connect</p><h2>Have something<br /><em>to say?</em></h2><p>Whether you&apos;re building something new, imagining what&apos;s next, or just want to say hello — my inbox is always open.</p><div className="contact-details"><a href="mailto:queenntoledo@gmail.com">queenntoledo@gmail.com</a><a href="tel:+639283023454">0928 302 3454</a><span>San Ildefonso, Bulacan, Philippines</span></div><div className="social-links"><a href="https://github.com/ashytoledo" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/queen-toledo-5b8732434/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="https://www.facebook.com/ashy.toledo.2025" target="_blank" rel="noreferrer">Facebook ↗</a></div></div><form className="contact-form reveal" onSubmit={submit}><label className="contact-field" onPointerMove={trackPointer}>Your name<input name="name" required placeholder="How should I call you?" /></label><label className="contact-field" onPointerMove={trackPointer}>Your email<input name="email" type="email" required placeholder="you@email.com" /></label><label className="contact-field" onPointerMove={trackPointer}>Your message<textarea name="message" required placeholder="Tell me what you&apos;re imagining..." rows={4} /></label><button className="button primary" type="submit">{sent ? "Open email app again" : "Send message"} <Arrow /></button>{sent && <p className="modal-note" role="status">Your email app should open with your message ready. Press Send there to deliver it.</p>}</form></section>
 
     <footer className="site-footer shell"><a className="wordmark" href="#top"><span className="wordmark-mark">AG</span>ASHY<span className="muted-dot">.</span></a><p>© 2025 Ashy G. Toledo.</p><a href="#top">Back to top ↑</a></footer>
 
